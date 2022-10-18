@@ -17,12 +17,14 @@ import pandas as pd
 # Create your views here.
 def index(request):
     context = {}
-    global attribute, file_directory, voltage_stage
+    global attribute, file_directory, voltage_stage, interval
 
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
         voltage_stage = request.POST.get('V_stages')
         voltage_stage = [float(s) for s in voltage_stage.split(",")]
+
+        interval = request.POST.get('t_interval')
 
         # check if this file ends with csv
         if uploaded_file.name.endswith('.txt'):
@@ -73,7 +75,7 @@ def readfile(filename):
     time_per_stage = 30 * 60
 
     # The data sampling interval of conductivity meter
-    interval = 1
+    # interval = 1
 
     # Calculate # of data points per potential stage
     n_points_per_stage = int(time_per_stage / interval)
