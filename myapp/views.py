@@ -17,7 +17,8 @@ import pandas as pd
 # Create your views here.
 def index(request):
     context = {}
-    global attribute, file_directory, voltage_stage, interval
+    # The data sampling interval of conductivity meter
+    global file_directory, voltage_stage, interval
 
     if request.method == 'POST':
         uploaded_file = request.FILES['document']
@@ -53,7 +54,7 @@ def index(request):
 def readfile(filename):
     # The path of the conductivity data file
     filepath = file_directory
-    global index_x, cond_global, cont_arr, cond_unit, interval, n_points_per_stage, n_stages
+    global cont_arr, cond_unit, n_points_per_stage, n_stages
 
     # read the missing data - checking if there is a null
     missingvalue = ['?', '0', '--']
@@ -61,20 +62,17 @@ def readfile(filename):
     content = pd.read_csv(filepath, delimiter='\s+', na_values=missingvalue, engine='python')
     cont_arr = content.to_numpy()
 
-    index_x = cont_arr[:, 0]
-    cond_global = cont_arr[:, 7]
+    index = cont_arr[:, 0]
+    cond = cont_arr[:, 7]
 
     # Get the unit of conductivity for unit conversion
     cond_unit = cont_arr[:, 8][0]
 
     # Get the # of data points in the file
-    n_total_points = len(index_x)
+    n_total_points = len(index)
 
     # The time duration for a potential applied on, in the unit of sec
     time_per_stage = 30 * 60
-
-    # The data sampling interval of conductivity meter
-    # interval = 1
 
     # Calculate # of data points per potential stage
     n_points_per_stage = int(time_per_stage / interval)
@@ -90,7 +88,7 @@ def plot_graph(request):
 
     voltage_text_pos = cond_global[0]
     plt.switch_backend("AGG")
-    plt.figure(figsize=(7, 5))
+    # plt.figure(figsize=(7, 5))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond_global[:len(voltage_stage) * n_points_per_stage])
 
     for i in range(len(voltage_stage)):
