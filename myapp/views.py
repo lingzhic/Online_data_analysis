@@ -88,7 +88,7 @@ def plot_graph(request):
 
     voltage_text_pos = cond_global[0]
     plt.switch_backend("AGG")
-    # plt.figure(figsize=(7, 5))
+    plt.figure(figsize=(7, 5))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond_global[:len(voltage_stage) * n_points_per_stage])
 
     for i in range(len(voltage_stage)):
