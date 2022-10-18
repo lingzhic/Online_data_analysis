@@ -39,7 +39,7 @@ def index(request):
             message = f"There are {n_stages} stages detected"
             messages.warning(request, message)
 
-            if n_stages != len(voltage_stage):
+            if n_stages < len(voltage_stage):
                 message = "Please check if the given voltage list matches the conductivity file!"
                 messages.warning(request, message)
             else:
