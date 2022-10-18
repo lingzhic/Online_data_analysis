@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('results', views.results, name="results"),
-    path('demo', views.plot_graph, name="demo"),
+    path('diffusion_data_analysed', views.plot_graph, name="diffusion_data_analysed"),
 ]

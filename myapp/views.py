@@ -2,13 +2,11 @@ import os
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
-from django.http import HttpResponse
 
 import base64
 import io
 import math
 
-# from matplotlib.pylab import *
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -62,14 +60,11 @@ def readfile(filename):
     content = pd.read_csv(filepath, delimiter='\s+', na_values=missingvalue, engine='python')
     cont_arr = content.to_numpy()
 
-    index = cont_arr[:, 0]
-    cond = cont_arr[:, 7]
-
     # Get the unit of conductivity for unit conversion
     cond_unit = cont_arr[:, 8][0]
 
     # Get the # of data points in the file
-    n_total_points = len(index)
+    n_total_points = len(cont_arr[:, 0])
 
     # The time duration for a potential applied on, in the unit of sec
     time_per_stage = 30 * 60
@@ -112,7 +107,7 @@ def plot_graph(request):
     graphic = graphic.decode('utf-8')
     buf.close()
 
-    return render(request, 'demo.html', {'graphic': graphic})
+    return render(request, 'diffusion_data_analysed.html', {'graphic': graphic})
 
 
 def results(request):
