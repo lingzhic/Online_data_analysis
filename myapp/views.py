@@ -23,8 +23,7 @@ def index(request):
         uploaded_file = request.FILES['document']
         voltage_stage = request.POST.get('V_stages')
         voltage_stage = [float(s) for s in voltage_stage.split(",")]
-
-        interval = request.POST.get('t_interval')
+        interval = int(request.POST.get('t_interval'))
 
         # check if this file ends with csv
         if uploaded_file.name.endswith('.txt'):
