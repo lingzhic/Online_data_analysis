@@ -9,9 +9,19 @@
 
 <body>
 <div class="demo">
+    The conductivity vs time plot
     {% block content %}
-        {% if graphic %}
-            <img src="data:img/png;base64, {{ graphic|safe }}" alt="">
+        {% if slope_plot %}
+            <img src="data:img/png;base64, {{ slope_plot|safe }}" alt="">
+        {% endif %}
+    {% endblock content %}
+</div>
+
+<div class="demo">
+    The conductivity slope bar chart
+    {% block content %}
+        {% if slope_bar %}
+            <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="">
         {% endif %}
     {% endblock content %}
 </div>

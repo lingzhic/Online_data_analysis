@@ -86,12 +86,14 @@ def plot_graph(request):
     plt.figure(figsize=(7, 5))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond_global[:len(voltage_stage) * n_points_per_stage])
 
+    slopt_lst = []
     for i in range(len(voltage_stage)):
         b, k = np.polynomial.polynomial.polyfit(np.array(time[50:n_points_per_stage - 50], dtype=float),
                                                 np.array(cond_global[50:n_points_per_stage - 50], dtype=float), 1)
         plt.plot(time[:n_points_per_stage], b + k * time[:n_points_per_stage])
         plt.text(float(time[0]), float(cond_global[n_points_per_stage // 2] + 0.3), s=f"{k:.2}")
         plt.text(float(time[n_points_per_stage // 2]), voltage_text_pos, s=f"{voltage_stage[i]} V")
+        slopt_lst.append(k)
 
         time = time[n_points_per_stage:]
         cond_global = cond_global[n_points_per_stage:]
@@ -103,11 +105,24 @@ def plot_graph(request):
     plt.savefig(buf, format='png', dpi=150)
     buf.seek(0)
     image_png = buf.getvalue()
-    graphic = base64.b64encode(image_png)
-    graphic = graphic.decode('utf-8')
+    slope_plot = base64.b64encode(image_png)
+    slope_plot = slope_plot.decode('utf-8')
     buf.close()
 
-    return render(request, 'diffusion_data_analysed.html', {'graphic': graphic})
+    plt.figure(figsize=(7, 5))
+    plt.bar(voltage_stage, slopt_lst, align='center', alpha=0.5)
+    plt.xticks(voltage_stage, voltage_stage)
+    plt.xlabel('Applied voltage')
+    plt.ylabel('Conductivity slope')
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png', dpi=150)
+    buf.seek(0)
+    image_png = buf.getvalue()
+    slope_bar = base64.b64encode(image_png)
+    slope_bar = slope_bar.decode('utf-8')
+    buf.close()
+
+    return render(request, 'diffusion_data_analysed.html', {'graphic': slope_plot, 'slope_bar': slope_bar})
 
 
 def results(request):
