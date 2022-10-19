@@ -10,7 +10,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from plot_utils import get_graph
+from .plot_utils import get_graph
 
 
 # Create your views here.
