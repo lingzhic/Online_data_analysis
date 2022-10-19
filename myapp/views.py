@@ -105,17 +105,17 @@ def plot_graph(request):
     slope_plot = get_graph()
 
 
-    plt.clf()
-    plt.switch_backend("AGG")
-    plt.figure(figsize=(7, 5))
-    plt.bar(voltage_stage, slopt_lst, align='center', alpha=0.5)
-    x_pos = np.arange(len(voltage_stage))
-    plt.xticks(x_pos, voltage_stage)
-    plt.xlabel('Applied voltage')
-    plt.ylabel('Conductivity slope')
-
-    slope_bar = get_graph()
-    return render(request, 'diffusion_data_analysed.html', {'graphic': slope_plot, 'slope_bar': slope_bar})
+    # plt.clf()
+    # plt.switch_backend("AGG")
+    # plt.figure(figsize=(7, 5))
+    # plt.bar(voltage_stage, slopt_lst, align='center', alpha=0.5)
+    # x_pos = np.arange(len(voltage_stage))
+    # plt.xticks(x_pos, voltage_stage)
+    # plt.xlabel('Applied voltage')
+    # plt.ylabel('Conductivity slope')
+    #
+    # slope_bar = get_graph()
+    return render(request, 'diffusion_data_analysed.html', {'graphic': slope_plot, })
 
 
 def results(request):
