@@ -10,6 +10,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from plot_utils import get_graph
 
 
 # Create your views here.
@@ -101,15 +102,11 @@ def plot_graph(request):
     plt.xlabel("Time (hour)")
     plt.ylabel("Conductivity ($\mu$S / cm)")
 
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png', dpi=150)
-    buf.seek(0)
-    image_png = buf.getvalue()
-    slope_plot = base64.b64encode(image_png)
-    slope_plot = slope_plot.decode('utf-8')
-    buf.close()
+    slope_plot = get_graph()
+
 
     plt.clf()
+    plt.switch_backend("AGG")
     plt.figure(figsize=(7, 5))
     plt.bar(voltage_stage, slopt_lst, align='center', alpha=0.5)
     x_pos = np.arange(len(voltage_stage))
@@ -117,14 +114,7 @@ def plot_graph(request):
     plt.xlabel('Applied voltage')
     plt.ylabel('Conductivity slope')
 
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png', dpi=150)
-    buf.seek(0)
-    image_png = buf.getvalue()
-    slope_bar = base64.b64encode(image_png)
-    slope_bar = slope_bar.decode('utf-8')
-    buf.close()
-
+    slope_bar = get_graph()
     return render(request, 'diffusion_data_analysed.html', {'graphic': slope_plot, 'slope_bar': slope_bar})
 
 
