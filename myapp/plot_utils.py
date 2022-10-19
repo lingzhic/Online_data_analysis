@@ -1,11 +1,6 @@
+import math
 import base64
 import io
-import math
-import urllib
-
-import base64
-import io
-import math
 
 import matplotlib.pyplot as plt
 import numpy as np

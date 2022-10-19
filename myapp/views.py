@@ -101,7 +101,6 @@ def plot_graph(request):
 
     plt.xlabel("Time (hour)")
     plt.ylabel("Conductivity ($\mu$S / cm)")
-
     slope_plot = get_graph()
 
 
@@ -115,7 +114,7 @@ def plot_graph(request):
     # plt.ylabel('Conductivity slope')
     #
     # slope_bar = get_graph()
-    return render(request, 'diffusion_data_analysed.html', {'graphic': slope_plot, })
+    return render(request, 'diffusion_data_analysed.html', {'graphic': slope_plot})
 
 
 def results(request):
