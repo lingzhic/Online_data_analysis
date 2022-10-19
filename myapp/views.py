@@ -109,11 +109,14 @@ def plot_graph(request):
     slope_plot = slope_plot.decode('utf-8')
     buf.close()
 
+    plt.clf()
     plt.figure(figsize=(7, 5))
     plt.bar(voltage_stage, slopt_lst, align='center', alpha=0.5)
-    plt.xticks(voltage_stage, voltage_stage)
+    x_pos = np.arange(len(voltage_stage))
+    plt.xticks(x_pos, voltage_stage)
     plt.xlabel('Applied voltage')
     plt.ylabel('Conductivity slope')
+
     buf = io.BytesIO()
     plt.savefig(buf, format='png', dpi=150)
     buf.seek(0)
