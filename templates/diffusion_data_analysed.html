@@ -8,8 +8,8 @@
 </head>
 
 <body>
-<div class="diffusion_data_analysed">
-    The conductivity vs time plot
+<h1>The conductivity vs time plot</h1>
+<div class="slope_plot_graph">
     {% block content %}
         {% if slope_plot %}
             <img src="data:img/png;base64, {{ slope_plot|safe }}" alt="">
@@ -17,14 +17,14 @@
     {% endblock content %}
 </div>
 
-{#<div class="demo">#}
-{#    The conductivity slope bar chart#}
-{#    {% block content %}#}
-{#        {% if slope_bar %}#}
-{#            <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="">#}
-{#        {% endif %}#}
-{#    {% endblock content %}#}
-{#</div>#}
+<h1>The conductivity slope bar chart</h1>
+<div class="slope_bar_graph">
+    {% block content2 %}
+        {% if slope_bar %}
+            <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="">
+        {% endif %}
+    {% endblock content2 %}
+</div>
 
 <button class="btn"> <a href="{% url 'index' %}"> GO BACK</a></button>
 </body>
