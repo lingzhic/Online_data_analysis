@@ -12,16 +12,17 @@
 <div class="slope_plot_graph">
     {% block line_plot_block %}
         {% if slope_plot %}
-            <img src="data:img/png;base64, {{ slope_plot|safe }}" alt="" width="60%" height="60%">
+            <img src="data:img/png;base64, {{ slope_plot|safe }}" alt="" width="70%" height="70%">
         {% endif %}
     {% endblock line_plot_block %}
+<p></p>
 </div>
 
 <h1>The ion permeation flux bar chart</h1>
 <div class="slope_bar_graph">
     {% block bar_plot_block %}
         {% if slope_bar %}
-            <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="" width="60%" height="60%">
+            <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="" width="70%" height="70%">
         {% endif %}
     {% endblock bar_plot_block %}
 </div>

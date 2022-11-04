@@ -79,10 +79,6 @@ def readfile(filename):
     time_interval = get_time_interval(cont_arr[:, 2])
     n_points_per_stage = int(time_per_stage / time_interval)
     n_stages = math.ceil(n_total_points / n_points_per_stage)
-    print(time_interval)
-    print(n_points_per_stage)
-    print(n_stages)
-    print()
 
 
 # Calculate the slope of every stage and plot a summary graph
@@ -108,16 +104,15 @@ def plot_graph(request):
                                                 np.array(cond[lower_fitting_range:upper_fitting_range], dtype=float), 1)
         plt.plot(time[lower_fitting_range:upper_fitting_range], b + k * time[lower_fitting_range:upper_fitting_range])
         plt.grid(visible=True, which='major', axis='x', color='darkgray', linestyle='-', linewidth=2)
-        plt.text(float(time[0]), float(cond[n_points_per_stage // 2] + 0.5),
-                 s=f"{k:.2f}")
+        plt.text(float(time[0]), float(cond[n_points_per_stage // 2] + 0.5), s=f"{k:.2f}")
         plt.text(float(time[n_points_per_stage // 2]), voltage_text_pos, s=f"{voltage_stage[i]} V", ha='center')
         slope_lst.append(k)
 
         time = time[n_points_per_stage:]
         cond = cond[n_points_per_stage:]
 
-    plt.xlabel("Time (hour)")
-    plt.ylabel("Conductivity ($\mu$S / cm)")
+    plt.xlabel("Time (hour)", fontsize=18)
+    plt.ylabel("Conductivity ($\mu$S / cm)", fontsize=18)
     slope_plot = get_graph()
 
     # Plot bar chart
@@ -136,8 +131,8 @@ def plot_graph(request):
     plt.bar(x_pos, flux, align='center', alpha=0.5)
     add_labels(x_pos, flux)
     plt.xticks(x_pos, voltage_stage)
-    plt.xlabel('Applied voltage (V)')
-    plt.ylabel('Permeation flux $(mol / m^2 h)$')
+    plt.xlabel('Applied voltage (V)', fontsize=18)
+    plt.ylabel('Permeation flux $(mol / m^2 h)$', fontsize=18)
     slope_bar = get_graph()
 
     return render(request, 'diffusion_data_analysed.html', {'slope_plot': slope_plot, 'slope_bar': slope_bar})
