@@ -79,6 +79,10 @@ def readfile(filename):
     time_interval = get_time_interval(cont_arr[:, 2])
     n_points_per_stage = int(time_per_stage / time_interval)
     n_stages = math.ceil(n_total_points / n_points_per_stage)
+    print(time_interval)
+    print(n_points_per_stage)
+    print(n_stages)
+    print()
 
 
 # Calculate the slope of every stage and plot a summary graph
@@ -92,7 +96,7 @@ def plot_graph(request):
     voltage_text_pos = cond[0]
     plt.switch_backend("AGG")
     plt.figure(figsize=(7, 5))
-    plt.xticks(np.arange(min(time), max(time) + 1, voltage_stage_interval / MINUTES_PER_HOUR))
+    plt.xticks(np.arange(0, round(max(time), 2) + 1, round(voltage_stage_interval / MINUTES_PER_HOUR, 1)))
     plt.xlim(0, int(max(time)))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond[:len(voltage_stage) * n_points_per_stage])
 
@@ -104,8 +108,9 @@ def plot_graph(request):
                                                 np.array(cond[lower_fitting_range:upper_fitting_range], dtype=float), 1)
         plt.plot(time[lower_fitting_range:upper_fitting_range], b + k * time[lower_fitting_range:upper_fitting_range])
         plt.grid(visible=True, which='major', axis='x', color='darkgray', linestyle='-', linewidth=2)
-        plt.text(float(time[0]), float(cond[n_points_per_stage // 2] + 0.3), s=f"{k:.2f}")
-        plt.text(float(time[n_points_per_stage // 2]), voltage_text_pos, s=f"{voltage_stage[i]} V")
+        plt.text(float(time[0]), float(cond[n_points_per_stage // 2] + 0.5),
+                 s=f"{k:.2f}")
+        plt.text(float(time[n_points_per_stage // 2]), voltage_text_pos, s=f"{voltage_stage[i]} V", ha='center')
         slope_lst.append(k)
 
         time = time[n_points_per_stage:]

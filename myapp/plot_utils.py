@@ -19,10 +19,12 @@ def get_graph():
 
 
 def get_time_interval(time_col):
-    s1 = time_col[0]
-    s2 = time_col[1]
+    s1 = time_col[1]
+    s2 = time_col[2]
     before = datetime.strptime(s1, '%H:%M:%S')
     after = datetime.strptime(s2, '%H:%M:%S')
+    print(before.timestamp())
+    print(after.timestamp())
     delta_t = after.timestamp() - before.timestamp()
     return int(delta_t)
 
