@@ -129,8 +129,8 @@ def plot_graph(request):
     A_eff = np.pi * inner_hole_diameter * mem_thickness         # m2
     flux = [slope * 0.000001 * 100 * permeate_volume / (A_eff * electrolyte_lambda) for slope in slope_lst]
 
-    plt.bar(voltage_stage_str.split(","), flux, align='center', alpha=0.5)
     x_pos = np.arange(len(voltage_stage))
+    plt.bar(x_pos, flux, align='center', alpha=0.5)
     plt.xticks(x_pos, voltage_stage)
     plt.xlabel('Applied voltage (V)')
     plt.ylabel('Permeation flux $(mol / m^2 h)$')
