@@ -25,3 +25,8 @@ def get_time_interval(time_col):
     after = datetime.strptime(s2, '%H:%M:%S')
     delta_t = after.timestamp() - before.timestamp()
     return int(delta_t)
+
+
+def add_labels(x, y):
+    for i in range(len(x)):
+        plt.text(i, y[i], y[i], ha='center')

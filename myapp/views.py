@@ -10,7 +10,7 @@ import math
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from .plot_utils import get_graph, get_time_interval
+from .plot_utils import get_graph, get_time_interval, add_labels
 
 SECONDS_PER_MINUTE = 60
 MINUTES_PER_HOUR = 60
@@ -129,6 +129,7 @@ def plot_graph(request):
 
     x_pos = np.arange(len(voltage_stage))
     plt.bar(x_pos, flux, align='center', alpha=0.5)
+    add_labels(x_pos, flux)
     plt.xticks(x_pos, voltage_stage)
     plt.xlabel('Applied voltage (V)')
     plt.ylabel('Permeation flux $(mol / m^2 h)$')
