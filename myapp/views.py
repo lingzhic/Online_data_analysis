@@ -104,7 +104,7 @@ def plot_graph(request):
                                                 np.array(cond[lower_fitting_range:upper_fitting_range], dtype=float), 1)
         plt.plot(time[lower_fitting_range:upper_fitting_range], b + k * time[lower_fitting_range:upper_fitting_range])
         plt.grid(visible=True, which='major', axis='x', color='darkgray', linestyle='-', linewidth=2)
-        plt.text(float(time[0]), float(cond[n_points_per_stage // 2] + 0.3), s=f"{k:.2}")
+        plt.text(float(time[0]), float(cond[n_points_per_stage // 2] + 0.3), s=f"{k:.2f}")
         plt.text(float(time[n_points_per_stage // 2]), voltage_text_pos, s=f"{voltage_stage[i]} V")
         slope_lst.append(k)
 
