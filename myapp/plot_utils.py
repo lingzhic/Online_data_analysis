@@ -29,4 +29,4 @@ def get_time_interval(time_col):
 
 def add_labels(x, y):
     for i in range(len(x)):
-        plt.text(i, y[i], y[i], ha='center')
+        plt.text(i, y[i], f"{y[i]:.2}", ha='center')
