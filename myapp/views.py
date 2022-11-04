@@ -93,7 +93,7 @@ def plot_graph(request):
     voltage_text_pos = cond[0]
     plt.switch_backend("AGG")
     plt.figure(figsize=(7, 5))
-    plt.xticks(np.arange(min(time), max(time) + 1, time_interval / MINUTES_PER_HOUR))
+    plt.xticks(np.arange(min(time), max(time) + 1, voltage_stage_interval / MINUTES_PER_HOUR))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond[:len(voltage_stage) * n_points_per_stage])
 
     slope_lst = []
