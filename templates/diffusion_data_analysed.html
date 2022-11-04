@@ -10,22 +10,22 @@
 <body>
 <h1>The conductivity vs time plot</h1>
 <div class="slope_plot_graph">
-    {% block content %}
+    {% block line_plot_block %}
         {% if slope_plot %}
             <img src="data:img/png;base64, {{ slope_plot|safe }}" alt="">
         {% endif %}
-    {% endblock content %}
+    {% endblock line_plot_block %}
 </div>
 
 <h1>The conductivity slope bar chart</h1>
 <div class="slope_bar_graph">
-    {% block content2 %}
+    {% block bar_plot_block %}
         {% if slope_bar %}
             <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="">
         {% endif %}
-    {% endblock content2 %}
+    {% endblock bar_plot_block %}
 </div>
 
-<button class="btn"> <a href="{% url 'index' %}"> GO BACK</a></button>
+<button class="btn"> <a href="{% url 'index' %}"> GO BACK TO MAIN</a></button>
 </body>
 </html>

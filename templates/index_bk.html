@@ -12,46 +12,34 @@
               <h1> Please upload a diffusion conductivity .txt file </h1> <br>
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="row content1">
+                    <div class="row content">
                         <div class="col"> <br>
                             <input type="file" name="document" id="document" required="required">
-                            <p></p>
-                            <p></p>
                         </div>
-                    </div>
 
-                    <div class="row content2">
                         <div class="col">
-                            <p id="V"> Potential stages ("," separate)</p>
+                            <p id="V"> Enter potential stages</p>
                             <input type="text" name="V_stages" id="V_stages" required="required">
                         </div>
 
                          <div class="col">
-                             <p id="interval"> Time per potential stage (mins)</p>
+                             <p id="interval"> Enter time per potential stage (mins)</p>
                              <input type="text" name="t_interval" id="t_interval" required="required">
                          </div>
 
                          <div class="col">
-                             <p id="thickness"> Membrane thickness (um)</p>
-                             <input type="text" name="mem_thickness" id="mem_thickness" required="required">
-                             <p></p>
+                             <p id="thickness"> Enter the membrane thickness (um)</p>
+                            <input type="text" name="thickness" id="mem_thickness" required="required">
                          </div>
-                    </div>
 
-                    <div class="row content3">
-                         <div class="col">
-                             <p></p>
+                        <div class="col">
                               <label for="lang">Electrolyte</label>
                               <select name="electrolyte" id="electrolyte" required="required">
                                 <option value="KCl">KCl</option>
                                 <option value="LiCl">LiCl</option>
                               </select>
-                             <p></p>
-                         </div>
+                        </div>
 
-                    </div>
-
-                    <div class="row content4">
                          <div class="col"> <br>
                             <button id="submit" class="btn-primary"> Upload</button>
                          </div>
@@ -68,8 +56,8 @@
             </div>
         {% endif %}
     {% endblock %}
-      </div>
-    </div>
+              </div>
+</div>
 </div>
 </body>
 </html>

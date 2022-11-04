@@ -4,6 +4,7 @@ import io
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from datetime import datetime
 
 
 def get_graph():
@@ -15,3 +16,12 @@ def get_graph():
     graph = graph.decode('utf-8')
     buf.close()
     return graph
+
+
+def get_time_interval(time_col):
+    s1 = time_col[0]
+    s2 = time_col[1]
+    before = datetime.strptime(s1, '%H:%M:%S')
+    after = datetime.strptime(s2, '%H:%M:%S')
+    delta_t = after.timestamp() - before.timestamp()
+    return int(delta_t)
