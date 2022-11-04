@@ -12,7 +12,7 @@
 <div class="slope_plot_graph">
     {% block line_plot_block %}
         {% if slope_plot %}
-            <img src="data:img/png;base64, {{ slope_plot|safe }}" alt="">
+            <img src="data:img/png;base64, {{ slope_plot|safe }}" alt="" width="60%" height="60%">
         {% endif %}
     {% endblock line_plot_block %}
 </div>
@@ -21,7 +21,7 @@
 <div class="slope_bar_graph">
     {% block bar_plot_block %}
         {% if slope_bar %}
-            <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="">
+            <img src="data:img/png;base64, {{ slope_bar|safe }}" alt="" width="60%" height="60%">
         {% endif %}
     {% endblock bar_plot_block %}
 </div>

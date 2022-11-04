@@ -9,7 +9,7 @@ from datetime import datetime
 
 def get_graph():
     buf = io.BytesIO()
-    plt.savefig(buf, format='png', dpi=150)
+    plt.savefig(buf, format='png', dpi=300)
     buf.seek(0)
     image_png = buf.getvalue()
     graph = base64.b64encode(image_png)
