@@ -28,7 +28,7 @@ def index(request):
         voltage_stage_str = request.POST.get('V_stages')
         voltage_stage = [float(s) for s in voltage_stage_str.split(",")]
         voltage_stage_interval = int(request.POST.get('t_interval'))
-        mem_thickness = float(request.POST.get('mem_thickness')) * 1e-9  # in the unit of um
+        mem_thickness = float(request.POST.get('mem_thickness')) * 1e-6  # in the unit of um
         electrolyte = request.POST.get('electrolyte')
 
         # check if this file ends with txt
@@ -97,8 +97,6 @@ def plot_graph(request):
 
     slope_lst = []
     for i in range(len(voltage_stage)):
-        # b, k = np.polynomial.polynomial.polyfit(np.array(time[50:n_points_per_stage - 50], dtype=float),
-        #                                         np.array(cond[50:n_points_per_stage - 50], dtype=float), 1)
         lower_fitting_range = math.ceil(n_points_per_stage / 2)
         upper_fitting_range = n_points_per_stage
         b, k = np.polynomial.polynomial.polyfit(np.array(time[lower_fitting_range:upper_fitting_range], dtype=float),
