@@ -119,8 +119,6 @@ def plot_graph(request):
     plt.clf()
     # switch to AGG to enable the figure display on web
     plt.switch_backend("AGG")
-    plt.figure(figsize=(7, 5))
-
     # calculate the flux value
     electrolyte_lambda_dict = {"KCl": 0.01499, "LiCl": 0.01151}
     electrolyte_lambda = electrolyte_lambda_dict[electrolyte]   # S m2 mol-1
