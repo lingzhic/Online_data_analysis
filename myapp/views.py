@@ -20,7 +20,8 @@ MINUTES_PER_HOUR = 60
 def index(request):
     context = {}
     # The data sampling interval of conductivity meter
-    global file_directory, voltage_stage_str, voltage_stage_interval, mem_thickness, electrolyte
+    global file_directory, voltage_stage, voltage_stage_interval, mem_thickness, electrolyte
+    # voltage
 
     # get input from the form
     if request.method == 'POST':
@@ -83,8 +84,6 @@ def readfile(filename):
 # Calculate the slope of every stage and plot a summary graph
 def plot_graph(request):
     # Plot conductivity line chart
-    # convert voltage str to num
-    voltage_stage = [float(s) for s in voltage_stage_str.split(",")]
     # Take the "index" and "conductivity" columns for plotting
     index_x = cont_arr[:, 0]
     cond = cont_arr[:, 7]
@@ -94,7 +93,7 @@ def plot_graph(request):
     plt.switch_backend("AGG")
     plt.figure(figsize=(7, 5))
     plt.xticks(np.arange(min(time), max(time) + 1, voltage_stage_interval / MINUTES_PER_HOUR))
-    plt.xlim(0, math.ceil(max(time)))
+    plt.xlim(0, int(max(time)))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond[:len(voltage_stage) * n_points_per_stage])
 
     slope_lst = []
