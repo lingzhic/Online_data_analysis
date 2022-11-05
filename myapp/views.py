@@ -94,7 +94,7 @@ def plot_graph(request):
     # set only plot the range of given voltage stages
     x_time_increment = round(voltage_stage_interval / MINUTES_PER_HOUR, 1)
     plt.xticks(np.arange(0, len(voltage_stage) * x_time_increment, x_time_increment))
-    plt.xlim(0, int(len(voltage_stage) * x_time_increment))
+    plt.xlim(0, math.ceil(len(voltage_stage) * x_time_increment))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond[:len(voltage_stage) * n_points_per_stage])
 
     slope_lst = []
