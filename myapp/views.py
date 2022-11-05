@@ -11,9 +11,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from .plot_utils import get_graph, get_time_interval, add_labels
-
-SECONDS_PER_MINUTE = 60
-MINUTES_PER_HOUR = 60
+from .constants import *
 
 
 # Create your views here.
