@@ -28,7 +28,7 @@ def index(request):
         uploaded_file = request.FILES['document']
         voltage_stage_str = request.POST.get('V_stages')
         voltage_stage = [float(s) for s in voltage_stage_str.split(",")]
-        voltage_stage_interval = int(request.POST.get('t_interval'))
+        voltage_stage_interval = int(request.POST.get('t_interval'))     # time duration per potential stage
         mem_thickness = float(request.POST.get('mem_thickness')) * 1e-6  # in the unit of um
         electrolyte = request.POST.get('electrolyte')
 
@@ -92,8 +92,11 @@ def plot_graph(request):
     voltage_text_pos = cond[0]
     plt.switch_backend("AGG")
     plt.figure(figsize=(7, 5))
-    plt.xticks(np.arange(0, round(max(time), 2) + 1, round(voltage_stage_interval / MINUTES_PER_HOUR, 1)))
-    plt.xlim(0, int(max(time)))
+
+    # set only plot the range of given voltage stages
+    x_time_increment = round(voltage_stage_interval / MINUTES_PER_HOUR, 1)
+    plt.xticks(np.arange(0, len(voltage_stage) * x_time_increment, x_time_increment))
+    plt.xlim(0, int(len(voltage_stage) * x_time_increment))
     plt.plot(time[:len(voltage_stage) * n_points_per_stage], cond[:len(voltage_stage) * n_points_per_stage])
 
     slope_lst = []
