@@ -1,12 +1,9 @@
-import os
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
+import os
 
-import base64
-import io
 import math
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
