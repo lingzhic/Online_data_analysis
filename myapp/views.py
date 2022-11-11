@@ -118,7 +118,7 @@ def plot_graph(request):
     # switch to AGG to enable the figure display on web
     plt.switch_backend("AGG")
     # calculate the flux value
-    electrolyte_lambda_dict = {"KCl": 0.01499, "LiCl": 0.01151, "HCl": 0.04265}
+    electrolyte_lambda_dict = {"KCl": 0.01499, "LiCl": 0.01151, "HCl": 0.04265, "NaCl": 0.012651}
     electrolyte_lambda = electrolyte_lambda_dict[electrolyte]   # S m2 mol-1
     permeate_volume = 0.000029                                  # m3
     inner_hole_diameter = 0.004                                 # m
