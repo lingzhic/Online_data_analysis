@@ -3,6 +3,8 @@ media
 *.pyc
 *~
 *.pem
+fabfile.py
+online_data_venv
 
 # Mac
 .DS_Store
