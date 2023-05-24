@@ -2,6 +2,7 @@ django
 media
 *.pyc
 *~
+*.pem
 
 # Mac
 .DS_Store
@@ -65,7 +66,7 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
+database/db.sqlite3
 
 # Flask stuff:
 instance/
